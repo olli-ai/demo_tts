@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo TTS Frontend</title>
+</head>
+<body>
+  <div id="buttons">
+    <button onclick="fetchItem(1)">Dạ em nghe</button>
+    <button onclick="fetchItem(2)">Em đã mở máy lạnh</button>
+    <button onclick="fetchItem(3)">Vâng ạ, em đã chỉnh nhiệt độ xuống 16 độ</button>
+    <button onclick="fetchItem(4)">Em đã mở chế độ ngủ trên máy lạnh, chúc anh ngủ ngon nhé</button>
+  </div>
+  <script>
+    const fetchItem = async (itemId) => {
+      const response = await fetch(`http://0.0.0.0:3010/items/${itemId}`);
+      if (!response.ok) {
+        alert(`Error fetching item: ${response.statusText}`);
+        return;
+      }
+      // Handle successful response
+      const data = await response.json();
+      console.log(data);
+    };
+  </script>
+</body>
+</html>
