@@ -26,14 +26,53 @@
 </head>
 <body>
   <div id="buttons">
+    <h2>User ID:</h2>
+    <input type="text" id="user-id" value="" />
+    <h2>Serial Number:</h2>
+    <input type="text" id="sn" value="" />
+    <br />
     <button onclick="fetchItem(1)">Dạ em nghe</button>
     <button onclick="fetchItem(2)">Em đã mở máy lạnh</button>
     <button onclick="fetchItem(3)">Vâng ạ, em đã chỉnh nhiệt độ xuống 16 độ</button>
     <button onclick="fetchItem(4)">Em đã mở chế độ ngủ trên máy lạnh, chúc anh ngủ ngon nhé</button>
   </div>
   <script>
+    // Function to handle storing data in local storage
+    const storeData = (key, value) => {
+      localStorage.setItem(key, JSON.stringify(value));
+    };
+
+    // Function to retrieve data from local storage
+    const getData = (key) => {
+      const data = localStorage.getItem(key);
+      if (data) {
+        return JSON.parse(data);
+      }
+      return null;
+    };
+
+    // Prefill user id and S/N from local storage
+    const userId = getData("userId");
+    if (userId) {
+      document.getElementById("user-id").value = userId;
+    }
+    const sn = getData("sn");
+    if (sn) {
+      document.getElementById("sn").value = sn;
+    }
+
+    // Update fetchItem function to include user id and S/N
     const fetchItem = async (itemId) => {
-      const response = await fetch(`/items/${itemId}`);
+      const response = await fetch(`/items/${itemId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: document.getElementById("user-id").value,
+          sn: document.getElementById("sn").value,
+        }),
+      });
       if (!response.ok) {
         alert(`Error fetching item: ${response.statusText}`);
         return;
@@ -41,6 +80,9 @@
       // Handle successful response
       const data = await response.json();
       console.log(data);
+      // Store user id and S/N in local storage
+      storeData("userId", document.getElementById("user-id").value);
+      storeData("sn", document.getElementById("sn").value);
     };
   </script>
 </body>
