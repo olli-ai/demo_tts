@@ -24,9 +24,9 @@ def fastapi_app() -> FastAPI:
             case 2:
                 tts = "Em đã mở máy lạnh"
             case 3:
-                tts = "Vâng ạ, em đã chỉnh nhiệt độ xuống 16 độ"
+                tts = "Vâng ạ, em đã chỉnh nhiệt độ xuống 17 độ"
             case 4:
-                tts = "Em đã mở chế độ ngủ trên máy lạnh, chúc anh ngủ ngon nhé"
+                tts = "Em đã mở chế độ ngủ, chúc anh ngủ ngon"
             case _:
                 tts = "Xin chào"
 
