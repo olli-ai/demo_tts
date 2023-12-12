@@ -33,7 +33,7 @@
   </div>
   <script>
     const fetchItem = async (itemId) => {
-      const response = await fetch(`http://0.0.0.0:3010/items/${itemId}`);
+      const response = await fetch(`/items/${itemId}`);
       if (!response.ok) {
         alert(`Error fetching item: ${response.statusText}`);
         return;
