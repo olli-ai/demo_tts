@@ -32,7 +32,7 @@ def fastapi_app() -> FastAPI:
 
         print({"userId": user_id, "maikaSNS": [sn], "tts": tts})
         requests.post(
-            "https://staging.smarthome.iviet.com/api/v1/gateway/notification",
+            "https://smarthome.iviet.com/api/v1/gateway/notification",
             headers={"Content-Type": "application/json"},
             json={"userId": int(user_id), "maikaSNS": [sn], "tts": tts},
         )
