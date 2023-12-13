@@ -28,7 +28,7 @@ def fastapi_app() -> FastAPI:
             case 4:
                 tts = "Em đã mở chế độ ngủ, chúc anh ngủ ngon"
             case _:
-                tts = "Xin chào"
+                tts = "-"
 
         print({"userId": user_id, "maikaSNS": [sn], "tts": tts})
         requests.post(
